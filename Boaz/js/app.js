@@ -1,15 +1,17 @@
-$(document).ready(run);
+class MenuManager {
+    constructor(hamburgerId, menuId, navbarSelector) {
 
-function run() {
-    var SCROLL_TIME = 1000;
+        this.hamburger = document.getElementById(hamburgerId);
+        this.menu = document.getElementById(menuId);
+        this.navbar = document.querySelector(navbarSelector);
 
-    $(".scroll").click(menuClick);
-
-    function menuClick(event) {
-        event.preventDefault();
-        var id = $(this).attr("href");
-        $("html, body").animate({
-            "scrollTop": $(id).offset().top 
-        }, SCROLL_TIME);
+        this.hamburger.addEventListener('click', this.toggle.bind(this));
     }
+
+    toggle = () => {
+        this.menu.classList.toggle('active');
+        this.navbar.classList.toggle('active');
+    };
 }
+
+const menuManager = new MenuManager('hamburger', 'menu', '.navbar');
